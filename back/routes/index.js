@@ -20,13 +20,18 @@ router.get('/', async (req, res) => {
 // router.get('/:id', async (req, res) => {
 router.get('/product/:id', async (req, res) => {
     try {
-        await Product.findById(req.params.id, (err, product) => {
-            if (err) return err;
-            res.status(200).json(product);
-        });
+        await Product.exists({ _id: req.params.id }, (err, result) => {
+            if(result) {
+                Product.findById(req.params.id, (err, product) => {
+                    if (err) return err;
+                    return res.status(200).json(product);
+                });
+            } else {
+                return res.status(404).json({errorMsg: 'Product not found!', successMsg: false});
+            }
+        })
     } catch (e) {
-        res.status(500).json({errorMsg: 'Product not found!', successMsg: false});
-        // res.sendStatus(500)
+        res.sendStatus(500)
     }
 })
 
