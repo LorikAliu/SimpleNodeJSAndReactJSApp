@@ -154,7 +154,7 @@ const Home = ({ filterChanged }) => {
                         </ListGroup.Item>
                         </Link>
 
-                        <Link to={`?page=${currentPage}`} className="current-page-hover">
+                        <Link to={`?page=${currentPage}`} className="current-page-hover pgDisabled">
                         <ListGroup.Item
                             style={{ border: "none" }}
                             className="current-page"
