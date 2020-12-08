@@ -115,7 +115,8 @@ HideOnScroll.propTypes = {
     window: PropTypes.func,
 };
 
-function Header( props ) {
+// function Header( { filterChanged, props} ) {
+const Header = ( { filterChanged, props} ) => {
     const history = useHistory();
     const {
       root,
@@ -156,19 +157,20 @@ function Header( props ) {
     dispatch(logout());
   };
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
+  // const handleMenu = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   const handleSubmit = async () => {
     history.push({
       pathname: "/",
       search: `?title=${searchValue}`,
     });
+    filterChanged(`${searchValue}`);
   };
 
   const displayDesktop = () => {

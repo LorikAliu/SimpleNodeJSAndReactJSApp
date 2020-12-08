@@ -1,5 +1,6 @@
 const express = require('express')
 const Product = require("../models/Product");
+const jwt = require("jsonwebtoken");
 const router = express.Router()
 
 function verifyToken(req, res, next) {
@@ -25,10 +26,18 @@ function verifyToken(req, res, next) {
 
 router.get('/', async (req, res) => {
     try {
-        await Product.find((err, products) => {
-            if (err) return err;
-            res.status(200).json({products});
-        });
+        if (req.query.title) {
+            await Product.find({ productTitle: { $regex: req.query.title, $options: "i" } }).exec(function (err, products) {
+                if (err) return err;
+                res.status(200).json({products});
+            });
+        } else {
+            await Product.find((err, products) => {
+                if (err) return err;
+                res.status(200).json({products});
+            });
+        }
+
     } catch (e) {
         // res.status(500).send(e)
         res.sendStatus(500)

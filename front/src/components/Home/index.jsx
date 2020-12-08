@@ -15,7 +15,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-const Home = () => {
+const Home = ({ filterChanged }) => {
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
@@ -61,7 +61,7 @@ const Home = () => {
 
     return (
         <>
-            <Header />
+            <Header filterChanged={filterChanged} />
             <div className="event__container">
                 {errMessage && <Alert severity="error">{errMessage}</Alert>}
                 {successMessage && <Alert severity="success">{successMessage}</Alert>}

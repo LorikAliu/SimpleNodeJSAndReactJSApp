@@ -9,11 +9,17 @@ import EditProduct from "./components/EditProduct";
 import "./index.css";
 
 function App() {
+  const [filterChange, setFilterChange] = useState(null);
+
+  const filterRequest = (value) => {
+    setFilterChange(value);
+  };
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
+          {/* <Route exact path={["/", "/home"]} component={Home} /> */}
+          <Route exact path={["/", "/home"]} component={() => <Home filterChanged={filterRequest} /> } />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/createproduct" component={CreateProduct} />

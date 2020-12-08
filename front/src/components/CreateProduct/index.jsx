@@ -46,22 +46,26 @@ function CreateProduct() {
     return (
         <>
             <Header />
-            <div className="event__container">
-                {errMessage && <Alert severity="error">{errMessage}</Alert>}
-                {successMessage && <Alert severity="success">{successMessage}</Alert>}
-            </div>
             <Row className="mt-5 d-flex justify-content-center" style={{minWidth: 400, margin: '0 0 0 10px'}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
+                {errMessage ? (
+                    <>
+                        <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
+                            <Alert severity="error">{errMessage}</Alert>
+                        </div>
+                    </>
+                ) : '' }
+                {successMessage ? (
+                    <>
+                        <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
+                        <Alert severity="success">{successMessage}</Alert>
+                        </div>
+                    </>
+                ) : '' }
                 <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
                     <h1>Create a Product</h1>
                 </div>
                     <Form onSubmit={handleSubmit(onSubmit)}>
-                    {/* <Form.Row> */}
-                        {/* <Form.Group
-                            className="product__form__group"
-                            as={Col} md={12}
-                        > */}
-                        {/* <Form.Group className="product__form__group" as={Col} auto> */}
                         <Form.Group className="product__form__group" as={Col} auto>
                             <Form.Label className="product__form__label d-flex align-items-end">
                             Product Name:
@@ -140,7 +144,6 @@ function CreateProduct() {
                             Create New Product
                             </Button>
                         </Form.Group>
-                    {/* </Form.Row> */}
                     </Form>
                 </Col>
             </Row>
