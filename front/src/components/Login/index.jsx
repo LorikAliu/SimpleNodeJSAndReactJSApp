@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { login } from "../../actions/auth";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -83,15 +83,9 @@ const Login = () => {
       });
   };
 
-  // if (isLoggedIn) {
-  //   if (currentUser.role.includes("admin")) {
-  //     return <Redirect to="/admin" />;
-  //   } else if (currentUser.role.includes("company")) {
-  //     return <Redirect to="/company" />;
-  //   } else {
-  //     return <Redirect to="/" />;
-  //   }
-  // }
+  if (isLoggedIn) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <ThemeProvider theme={darkTheme}>

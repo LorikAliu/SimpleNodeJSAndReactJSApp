@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link, Redirect } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 import { addUser } from "../../api/register";
 
 // import {Form} from "react-bootstrap";
@@ -18,7 +19,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Alert from "@material-ui/lab/Alert";
 import Paper from "@material-ui/core/Paper";
-import { useSelector } from "react-redux";
 // import Header from "../Header/Header";
 import { Switch } from "@material-ui/core";
 
