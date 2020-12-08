@@ -15,7 +15,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-function Home() {
+function CreateProduct() {
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
@@ -39,20 +39,8 @@ function Home() {
         setProductDetails(response.products);
     };
 
-    const handleDeleteSubmit = async (id) => {
-        const userID = {
-          user_id: currentUser.user._id,
-        };
-        try {
-            const response = await deleteProduct( id, userID );
-          
-            response.errMessage ? setErrMessage(response.errMessage) : setErrMessage(false);
-            response.successMessage ? setSuccessMessage(response.successMessage) : setSuccessMessage(false);
-        } catch (e) {}
-      };
-
     useEffect(() => {
-        getProductsList();
+        // getProductsList();
       }, []);
 
     if (!isLoggedIn) {
@@ -68,45 +56,11 @@ function Home() {
             </div>
             <Row className="mt-5 d-flex justify-content-center"  style={{minWidth: 400}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
-                <Table striped bordered hover variant="dark">
-                    <thead>
-                        <tr>
-                            <th>Product Name</th>
-                            <th>Price</th>
-                            <th>Stock</th>
-                            <th>Date</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    {productDetails           
-                    .map((product) => (
-                            <tr>
-                                <td>{product.productTitle}</td>
-                                <td>{product.productPrice / 100} $</td>
-                                <td>{product.productStock}</td>
-                                <td>{product.productDate}</td>
-                                <td><Button variant="secondary" onClick={() => {
-                                        history.push({
-                                            pathname: `/editproduct/${product._id}`
-                                        });
-                                    }}>Edit</Button>
-                                </td>
-                                <td><Button variant="danger" onClick={() => {
-                                    if (window.confirm("Delete the event?")) {
-                                        handleDeleteSubmit(product._id);
-                                    }
-                                    }}>Delete</Button>
-                                </td>
-                            </tr>
-                    ))}
-                    </tbody>
-                </Table>
+                    <Form></Form>
                 </Col>
             </Row>
         </>
     )
 }
 
-export default Home;
+export default CreateProduct;

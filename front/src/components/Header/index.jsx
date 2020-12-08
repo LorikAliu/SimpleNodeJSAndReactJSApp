@@ -316,11 +316,11 @@ function Header( props ) {
     <>
       <header className="main__header">
         <React.Fragment>
-          <HideOnScroll {...props}>
+          {/* <HideOnScroll {...props}> */}
             <AppBar className={header}>
               {mobileView ? displayMobile() : displayDesktop()}
             </AppBar>
-          </HideOnScroll>
+          {/* </HideOnScroll> */}
         </React.Fragment>
       </header>
     </>
