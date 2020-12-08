@@ -160,8 +160,8 @@ const Header = ( { filterChanged, props} ) => {
 
   const handleSubmit = async () => {
     history.push({
-      pathname: "/",
-      search: `?title=${searchValue}`,
+      pathname: "/search",
+      search: `?title=${searchValue}&page=1`,
     });
     filterChanged(`${searchValue}`);
   };

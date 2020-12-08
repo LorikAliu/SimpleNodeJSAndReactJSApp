@@ -5,6 +5,7 @@ import Login from "./components/Login/";
 import Home from "./components/Home/";
 import CreateProduct from "./components/CreateProduct";
 import EditProduct from "./components/EditProduct";
+import Search from "./components/Search";
 
 import "./index.css";
 
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/createproduct" component={() => <CreateProduct filterChanged={filterRequest} />} />
           <Route exact path="/editproduct/:id" component={() => <EditProduct filterChanged={filterRequest} />} />
+          <Route exact path="/search" component={() => <Search filterChanged={filterRequest} />} />
         </Switch>
       </div>
     </BrowserRouter>

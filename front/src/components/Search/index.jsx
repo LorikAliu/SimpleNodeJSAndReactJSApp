@@ -16,7 +16,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-const Home = ({ filterChanged }) => {
+const Search = ({ filterChanged }) => {
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
@@ -142,7 +142,8 @@ const Home = ({ filterChanged }) => {
                     <div className="pagination-container">
                     <ListGroup horizontal className="List__groups">
                         <Link
-                        to={`?page=${prevPage}`}
+                        // to={`?page=${prevPage}`}
+                        to={`?title=${querySearch}&page=${prevPage}`}
                         className={`clicked ${prevPageValue}`}
                         >
                         <ListGroup.Item
@@ -165,7 +166,8 @@ const Home = ({ filterChanged }) => {
                         </Link>
 
                         <Link
-                        to={`?page=${nextPage}`}
+                        // to={`?page=${nextPage}`}
+                        to={`?title=${querySearch}&page=${nextPage}`}
                         className={`clicked ${nextPageValue}`}
                         >
                         <ListGroup.Item
@@ -185,4 +187,4 @@ const Home = ({ filterChanged }) => {
     )
 }
 
-export default Home;
+export default Search;

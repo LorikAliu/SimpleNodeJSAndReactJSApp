@@ -1,0 +1,59 @@
+.products__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0 50px 0;
+    .event-opener {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    .card__content {
+      padding: 10px 0 0 10px;
+    }
+}
+
+.pagination-container {
+    border: "none";
+    display: flex;
+    justify-content: center;
+  
+    margin: 20px 0;
+}
+
+.list__groups {
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pgDisabled {
+    pointer-events: none !important;
+}
+
+.current-page {
+    color: black;
+    border: none;
+    text-decoration: none !important;
+    :hover {
+      text-decoration: none !important;
+      color: #ffffff !important;
+    }
+  
+    margin: 0 10px;
+}
+
+.current-page-hover {
+    text-decoration: none !important;
+    :hover {
+      text-decoration: none !important;
+    }
+}
+
+.pagination-icon {
+    height: 25px !important;
+    width: 25px !important;
+    border: none;
+}

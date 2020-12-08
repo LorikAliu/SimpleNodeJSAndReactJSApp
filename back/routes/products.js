@@ -26,20 +26,211 @@ function verifyToken(req, res, next) {
 
 router.get('/', async (req, res) => {
     try {
-        if (req.query.title) {
-            await Product.find({ productTitle: { $regex: req.query.title, $options: "i" } }).exec(function (err, products) {
+        // const limit = parseInt(6);
+        const limit = parseInt(10);
+
+
+        if (req.query.title && req.query.page) {
+            const lengthQuery = await Product.find({ productTitle: { $regex: req.query.title, $options: "i" } }).countDocuments().exec();
+            let pagesNo;
+            if(lengthQuery > 1) {
+                pagesNo = Math.ceil(lengthQuery / limit)
+            } else {
+                pagesNo = lengthQuery
+            }
+            let page = parseInt(req.query.page);
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+            const results = {};
+        
+            if (endIndex < lengthQuery) {
+                results.next = {
+                page: page + 1,
+                };
+            }
+            if (startIndex > 0) {
+                results.previous = {
+                page: page - 1,
+                };
+            }
+            await Product.find({ productTitle: { $regex: req.query.title, $options: "i" } })
+            .limit(limit)
+            .skip(startIndex)
+            .exec((err, products) => {
                 if (err) return err;
-                res.status(200).json({products});
+                let prevB = null;
+                let currentB = page;
+                // let nextB = 2;
+                let nextB;
+        
+                if (typeof results.previous !== "undefined") {
+                    prevB = results.previous.page;
+                }
+                if (typeof results.next !== "undefined") {
+                    nextB = results.next.page;
+                } else {
+                    nextB = null;
+                }
+                res.status(200).json({
+                    products,
+                    prevB: prevB,
+                    currentB: currentB,
+                    nextB: nextB,
+                    lengthB: pagesNo,
+                    pgResult: true,
+                });
+            });
+
+        } else if (req.query.page) {
+            const lengthQuery = await Product.find().countDocuments().exec();
+            let pagesNo;
+            if(lengthQuery > 1) {
+                pagesNo = Math.ceil(lengthQuery / limit)
+            } else {
+                pagesNo = lengthQuery
+            }
+            let page = parseInt(req.query.page);
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+            const results = {};
+        
+            if (endIndex < lengthQuery) {
+                results.next = {
+                page: page + 1,
+                };
+            }
+            if (startIndex > 0) {
+                results.previous = {
+                page: page - 1,
+                };
+            }
+            await Product.find()
+            .limit(limit)
+            .skip(startIndex)
+            .exec((err, products) => {
+                if (err) return err;
+                let prevB = null;
+                let currentB = page;
+                let nextB;
+        
+                if (typeof results.previous !== "undefined") {
+                    prevB = results.previous.page;
+                }
+                if (typeof results.next !== "undefined") {
+                    nextB = results.next.page;
+                } else {
+                    nextB = null;
+                }
+                res.status(200).json({
+                    products,
+                    prevB: prevB,
+                    currentB: currentB,
+                    nextB: nextB,
+                    lengthB: pagesNo,
+                    pgResult: true,
+                });
+            });
+        } else if (req.query.title) {
+            const lengthQuery = await Product.find({ productTitle: { $regex: req.query.title, $options: "i" } }).countDocuments().exec();
+            let pagesNo;
+            if(lengthQuery > 1) {
+                pagesNo = Math.ceil(lengthQuery / limit)
+            } else {
+                pagesNo = lengthQuery
+            }
+            let page = 1;
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+            const results = {};
+        
+            if (endIndex < lengthQuery) {
+                results.next = {
+                page: page + 1,
+                };
+            }
+            if (startIndex > 0) {
+                results.previous = {
+                page: page - 1,
+                };
+            }
+            await Product.find({ productTitle: { $regex: req.query.title, $options: "i" } })
+            .limit(limit)
+            .skip(startIndex)
+            .exec((err, products) => {
+                if (err) return err;
+                let prevB = null;
+                let currentB = page;
+                let nextB;
+        
+                if (typeof results.previous !== "undefined") {
+                    prevB = results.previous.page;
+                }
+                if (typeof results.next !== "undefined") {
+                    nextB = results.next.page;
+                } else {
+                    nextB = null;
+                }
+                res.status(200).json({
+                    products,
+                    prevB: prevB,
+                    currentB: currentB,
+                    nextB: nextB,
+                    lengthB: pagesNo,
+                    pgResult: true,
+                });
             });
         } else {
-            await Product.find((err, products) => {
+            const lengthQuery = await Product.find().countDocuments().exec();
+            let pagesNo;
+            if(lengthQuery > 1) {
+                pagesNo = Math.ceil(lengthQuery / limit)
+            } else {
+                pagesNo = lengthQuery
+            }
+            let page = 1;
+            const startIndex = (page - 1) * limit;
+            const endIndex = page * limit;
+            const results = {};
+        
+            if (endIndex < lengthQuery) {
+                results.next = {
+                page: page + 1,
+                };
+            }
+            if (startIndex > 0) {
+                results.previous = {
+                page: page - 1,
+                };
+            }
+            await Product.find()
+            .limit(limit)
+            .skip(startIndex)
+            .exec((err, products) => {
                 if (err) return err;
-                res.status(200).json({products});
+                let prevB = null;
+                let currentB = page;
+                let nextB;
+        
+                if (typeof results.previous !== "undefined") {
+                    prevB = results.previous.page;
+                }
+                if (typeof results.next !== "undefined") {
+                    nextB = results.next.page;
+                } else {
+                    nextB = null;
+                }
+                res.status(200).json({
+                    products,
+                    prevB: prevB,
+                    currentB: currentB,
+                    nextB: nextB,
+                    lengthB: pagesNo,
+                    pgResult: true,
+                });
             });
         }
 
     } catch (e) {
-        // res.status(500).send(e)
         res.sendStatus(500)
     }
 })
