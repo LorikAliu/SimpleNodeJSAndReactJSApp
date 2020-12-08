@@ -1,0 +1,144 @@
+[{
+  "_id": {
+    "$oid": "5fce4bb998361f3ca01b80d1"
+  },
+  "productTitle": "Samsung Galaxy S20",
+  "productPrice": 899.98,
+  "productStock": 21,
+  "productDate": {
+    "$date": "2020-12-07T15:35:21.776Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfb4a34476ae45f454a048"
+  },
+  "productTitle": "Iphone 12 Pro",
+  "productPrice": 1199.95,
+  "productStock": 15,
+  "productDate": {
+    "$date": "2020-12-08T17:15:15.671Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe6203475612dc8b9ed35"
+  },
+  "productTitle": "Product 1",
+  "productPrice": 125.95,
+  "productStock": 15,
+  "productDate": {
+    "$date": "2020-12-08T20:46:24.890Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe62f3475612dc8b9ed36"
+  },
+  "productTitle": "Product 2",
+  "productPrice": 25.95,
+  "productStock": 58,
+  "productDate": {
+    "$date": "2020-12-08T20:46:39.661Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe63c3475612dc8b9ed37"
+  },
+  "productTitle": "Product 3",
+  "productPrice": 10.99,
+  "productStock": 60,
+  "productDate": {
+    "$date": "2020-12-08T20:46:52.061Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe64e3475612dc8b9ed38"
+  },
+  "productTitle": "Product 4",
+  "productPrice": 5.95,
+  "productStock": 4,
+  "productDate": {
+    "$date": "2020-12-08T20:47:10.301Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe65b3475612dc8b9ed39"
+  },
+  "productTitle": "Product 5",
+  "productPrice": 35.95,
+  "productStock": 12,
+  "productDate": {
+    "$date": "2020-12-08T20:47:23.565Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe73b3475612dc8b9ed3a"
+  },
+  "productTitle": "Product 6",
+  "productPrice": 45.95,
+  "productStock": 15,
+  "productDate": {
+    "$date": "2020-12-08T20:51:07.656Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe7553475612dc8b9ed3b"
+  },
+  "productTitle": "Product 7",
+  "productPrice": 2.95,
+  "productStock": 125,
+  "productDate": {
+    "$date": "2020-12-08T20:51:33.119Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe75f3475612dc8b9ed3c"
+  },
+  "productTitle": "Product 8",
+  "productPrice": 16.95,
+  "productStock": 24,
+  "productDate": {
+    "$date": "2020-12-08T20:51:43.872Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe76c3475612dc8b9ed3d"
+  },
+  "productTitle": "Product 9",
+  "productPrice": 73.95,
+  "productStock": 23,
+  "productDate": {
+    "$date": "2020-12-08T20:51:56.615Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe77c3475612dc8b9ed3e"
+  },
+  "productTitle": "Product 10",
+  "productPrice": 55.95,
+  "productStock": 43,
+  "productDate": {
+    "$date": "2020-12-08T20:52:12.753Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "5fcfe9011a09d7289058202c"
+  },
+  "productTitle": "Product 11",
+  "productPrice": 199.95,
+  "productStock": 23,
+  "productDate": {
+    "$date": "2020-12-08T20:58:41.476Z"
+  },
+  "__v": 0
+}]
