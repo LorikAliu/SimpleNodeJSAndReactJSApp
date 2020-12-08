@@ -158,14 +158,6 @@ const Header = ( { filterChanged, props} ) => {
     dispatch(logout());
   };
 
-  // const handleMenu = (event) => {
-  //   setAnchorEl(event.currentTarget);
-  // };
-
-  // const handleClose = () => {
-  //   setAnchorEl(null);
-  // };
-
   const handleSubmit = async () => {
     history.push({
       pathname: "/",
@@ -183,7 +175,6 @@ const Header = ( { filterChanged, props} ) => {
           </Typography>
         </a>
 
-        {/* Navigation */}
         <div className="header__links">
         <div style={{margin: "0 0 0 20px", height: "100%", display: "inline-block"}}>
           <form className={classes.search} onSubmit={() => handleSubmit()}>
@@ -294,10 +285,10 @@ const Header = ( { filterChanged, props} ) => {
         </div>
         {currentUser ? (
           <>
-                <NavLink to="/createproduct" className="header__option" style={{display: "inline-block"}}>
+                <NavLink to="/createproduct" className="header__option">
                     Create New Product
                 </NavLink>
-                <NavLink to="/register" className="logged__out--signup" style={{display: "inline-block"}} onClick={logOut} >
+                <NavLink to="/register" className="logged__out--signup logout-margin" onClick={logOut} >
                     Log Out
                 </NavLink>
           </>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { format } from "date-fns";
 import { getProducts, getSingleProduct, deleteProduct } from "../../api/products";
 import { Container, ListGroup, CardDeck, Col, Row, Button, Table, Form } from "react-bootstrap";
 import Header from "../Header/";
@@ -61,11 +62,11 @@ const Home = ({ filterChanged }) => {
     return (
         <>
             <Header filterChanged={filterChanged} />
-            <div className="event__container">
+            <div className="event__container" >
                 {errMessage && <Alert severity="error">{errMessage}</Alert>}
                 {successMessage && <Alert severity="success">{successMessage}</Alert>}
             </div>
-            <Row className="mt-5 d-flex justify-content-center"  style={{minWidth: 400}}>
+            <Row className="mt-5 d-flex justify-content-center m-0"  style={{minWidth: 400}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
                 <Table striped bordered hover variant="dark">
                     <thead>
@@ -86,7 +87,8 @@ const Home = ({ filterChanged }) => {
                                 {/* <td>{product.productPrice / 100} $</td> */}
                                 <td>{product.productPrice.toFixed(2)} $</td>
                                 <td>{product.productStock}</td>
-                                <td>{product.productDate}</td>
+                                {/* <td>{product.productDate.split("T")[0]} {product.productDate.split("T")[1]}</td> */}
+                                <td>{format(new Date(product.productDate), "MMMMMM dd yyyy")}</td>
                                 <td><Button variant="secondary" onClick={() => {
                                         history.push({
                                             pathname: `/editproduct/${product._id}`

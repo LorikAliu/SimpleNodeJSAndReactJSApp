@@ -12,7 +12,7 @@ import Alert from "@material-ui/lab/Alert";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "./style.scss";
 
-function CreateProduct() {
+function CreateProduct({filterChanged}) {
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
@@ -45,7 +45,7 @@ function CreateProduct() {
 
     return (
         <>
-            <Header />
+            <Header filterChanged={filterChanged} />
             <Row className="mt-5 d-flex justify-content-center" style={{minWidth: 400, margin: '0 0 0 10px'}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
                 {errMessage ? (

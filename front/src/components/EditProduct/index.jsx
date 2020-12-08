@@ -12,7 +12,7 @@ import Alert from "@material-ui/lab/Alert";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "./style.scss";
 
-const EditProduct = () => {
+const EditProduct = ({filterChanged}) => {
     let { id } = useParams();
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
@@ -65,8 +65,8 @@ const EditProduct = () => {
 
     return (
         <>
-            <Header />
-            <Row className="mt-5 d-flex justify-content-center"  style={{minWidth: 400}}>
+            <Header filterChanged={filterChanged} />
+            <Row className="mt-5 d-flex justify-content-center  m-0"  style={{minWidth: 400}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
                 {errMessage ? (
                     <>
