@@ -1,6 +1,9 @@
 const express = require('express')
 const path = require('path');
 const mongoose = require('mongoose');
+const cors = require("cors");
+const registerRoute = require("./routes/register");
+const loginRoute = require("./routes/auth");
 const productsRoute = require("./routes/products");
 
 const app = express()
@@ -18,6 +21,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors());
+app.use("/register", registerRoute);
+app.use("/auth", loginRoute);
 app.use('/products', productsRoute)
 
 const PORT = process.env.PORT || 5000;

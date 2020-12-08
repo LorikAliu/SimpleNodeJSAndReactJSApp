@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect, useHistory, Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { login } from "../../actions/auth";
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -10,12 +9,10 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { Switch } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -72,6 +69,7 @@ function Login() {
       type: palletType,
     },
   });
+  
   const classes = useStyles();
 
   const handleSubmit = async (e) => {
@@ -152,9 +150,6 @@ function Login() {
                 <span>Login</span>
               </Button>
               <Grid container>
-                {/* <Grid item xs>
-                  <Switch checked={darkState} onChange={handleThemeChange} />
-                </Grid> */}
                 <Grid item>
                     <Link
                       to="/register"
@@ -164,9 +159,6 @@ function Login() {
                     </Link>
                 </Grid>
               </Grid>
-              {/* <Box mt={5}>
-                <Copyright />
-              </Box> */}
             </form>
           </div>
         </Grid>
