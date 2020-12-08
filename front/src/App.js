@@ -18,12 +18,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          {/* <Route exact path={["/", "/home"]} component={Home} /> */}
           <Route exact path={["/", "/home"]} component={() => <Home filterChanged={filterRequest} /> } />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          {/* <Route exact path="/createproduct" component={CreateProduct} />
-          <Route exact path="/editproduct/:id" component={EditProduct} /> */}
           <Route exact path="/createproduct" component={() => <CreateProduct filterChanged={filterRequest} />} />
           <Route exact path="/editproduct/:id" component={() => <EditProduct filterChanged={filterRequest} />} />
         </Switch>

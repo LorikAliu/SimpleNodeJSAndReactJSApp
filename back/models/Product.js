@@ -1,9 +1,14 @@
 const mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
-//   productPhoto: { type: String, required: true },
-  productTitle: { type: String, required: true },
-  productPrice: { type: Number, required: true },
+  productTitle: { 
+    type: String, 
+    required: true 
+  },
+  productPrice: { 
+    type: Number, 
+    required: true 
+  },
   productDate: {
     type: Date,
     default: Date.now,

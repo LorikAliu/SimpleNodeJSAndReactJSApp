@@ -47,7 +47,7 @@ const Home = ({ filterChanged }) => {
             const response = await deleteProduct( id, userID );
           
             response.errMessage ? setErrMessage(response.errMessage) : setErrMessage(false);
-            response.successMessage ? setSuccessMessage(response.successMessage) : setSuccessMessage(false);
+            response.successMsg ? setSuccessMessage(response.successMsg) : setSuccessMessage(false);
         } catch (e) {}
       };
 
@@ -68,6 +68,20 @@ const Home = ({ filterChanged }) => {
             </div>
             <Row className="mt-5 d-flex justify-content-center m-0"  style={{minWidth: 400}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
+                {errMessage ? (
+                    <>
+                        <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
+                            <Alert severity="error">{errMessage}</Alert>
+                        </div>
+                    </>
+                ) : '' }
+                {successMessage ? (
+                    <>
+                        <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
+                        <Alert severity="success">{successMessage}</Alert>
+                        </div>
+                    </>
+                ) : '' }
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -84,10 +98,8 @@ const Home = ({ filterChanged }) => {
                     .map((product) => (
                             <tr>
                                 <td>{product.productTitle}</td>
-                                {/* <td>{product.productPrice / 100} $</td> */}
                                 <td>{product.productPrice.toFixed(2)} $</td>
                                 <td>{product.productStock}</td>
-                                {/* <td>{product.productDate.split("T")[0]} {product.productDate.split("T")[1]}</td> */}
                                 <td>{format(new Date(product.productDate), "MMMMMM dd yyyy")}</td>
                                 <td><Button variant="secondary" onClick={() => {
                                         history.push({

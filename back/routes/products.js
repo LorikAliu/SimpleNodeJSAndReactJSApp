@@ -105,7 +105,7 @@ router.put('/:id', verifyToken, async (req, res) => {
     });
 })
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", verifyToken, async (req, res) => {
     jwt.verify(req.token, "secretkey", async (err, authData) => {
         if (err) {
           console.log("Unaothorized User");
