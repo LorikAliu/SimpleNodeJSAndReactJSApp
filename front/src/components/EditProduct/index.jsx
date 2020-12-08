@@ -143,7 +143,6 @@ const EditProduct = () => {
                             </Form.Label>
                             <Form.Control
                             type="number"
-                            step={0.01}
                             value={productDetails.productStock}
                             // defaultValue={productDetails.productStock}
                             name="productStock"

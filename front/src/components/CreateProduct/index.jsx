@@ -117,7 +117,6 @@ function CreateProduct() {
                             </Form.Label>
                             <Form.Control
                             type="number"
-                            step={0.01}
                             placeholder="Product Price..."
                             name="productStock"
                             ref={register({ required: true, min: 1 })}
