@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     },
     header: {
       marginBottom: "30px",
-      backgroundColor: "#444",
+      // backgroundColor: "#444",
+      backgroundColor: "#343A40",
       padding: "5px 25px",
     },
     logo: {
@@ -176,12 +177,11 @@ const Header = ( { filterChanged, props} ) => {
   const displayDesktop = () => {
     return (
       <Toolbar className={toolbar}>
-        <NavLink to="/" className="header__logo">
-          {/* <img src={ninjsLogo} alt="ninjs logo" width="45" height="45" /> */}
+        <a href="/" className="header__logo">
           <Typography variant="h6" component="h1" className={logo}>
             Home
           </Typography>
-        </NavLink>
+        </a>
 
         {/* Navigation */}
         <div className="header__links">
@@ -237,11 +237,11 @@ const Header = ( { filterChanged, props} ) => {
 
     return (
       <Toolbar className="mobile__responsive">
-        {/* <NavLink to="/" className="header__logo" onClick={filterChanged}> */}
-        <NavLink to="/" className="header__logo">
-          {/* <img src={ninjsLogo} alt="ninjs logo" width="45" height="45" /> */}
-          Home
-        </NavLink>
+        <a href="/" className="header__logo">
+          <Typography variant="h6" component="h1" className={logo}>
+            Home
+          </Typography>
+        </a>
         <IconButton
           {...{
             edge: "start",

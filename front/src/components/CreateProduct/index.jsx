@@ -72,7 +72,7 @@ function CreateProduct() {
                             </Form.Label>
                             <Form.Control
                             type="text"
-                            placeholder="Name..."
+                            placeholder="Product Name..."
                             name="productTitle"
                             // value={paymentDetails.name}
                             ref={register({ required: true, minLength: 3 })}
@@ -121,7 +121,7 @@ function CreateProduct() {
                             </Form.Label>
                             <Form.Control
                             type="number"
-                            placeholder="Product Price..."
+                            placeholder="Product Stock..."
                             name="productStock"
                             ref={register({ required: true, min: 1 })}
                             />

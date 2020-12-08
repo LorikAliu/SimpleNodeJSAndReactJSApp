@@ -9,7 +9,6 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import Alert from "@material-ui/lab/Alert";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./style.scss";
 
 function useQuery() {
     return new URLSearchParams(useLocation().search);
