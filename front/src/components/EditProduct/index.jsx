@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { useParams, Link, Redirect, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
-import { addProduct } from "../../api/products";
+import { getSingleProduct, editProduct } from "../../api/products";
 import { Container, ListGroup, CardDeck, Col, Row, Button, Table, Form } from "react-bootstrap";
 import Header from "../Header/";
 
@@ -12,11 +12,18 @@ import Alert from "@material-ui/lab/Alert";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "./style.scss";
 
-function CreateProduct() {
+const EditProduct = () => {
+    let { id } = useParams();
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
     const [successMessage, setSuccessMessage] = useState(false);
+    const [productDetails, setProductDetails] = useState([]);
+
+    const getProductsList = async () => {
+        const response = await getSingleProduct( );
+        setProductDetails(response.products);
+    };
 
     const { register, handleSubmit, errors } = useForm();
 
@@ -28,15 +35,15 @@ function CreateProduct() {
         };
     
         try {
-          const response = await addProduct(product);
+          const response = await editProduct( id, product);
           e.target.reset();
           setErrMessage(response.errMessage);
           setSuccessMessage(response.successMessage);
         } catch (e) {}
-      };
+    };
 
     useEffect(() => {
-        // getProductsList();
+        getProductsList();
     }, []);
 
     if (!isLoggedIn) {
@@ -46,16 +53,16 @@ function CreateProduct() {
     return (
         <>
             <Header />
-            <div className="event__container">
+            <div className="product__container">
                 {errMessage && <Alert severity="error">{errMessage}</Alert>}
                 {successMessage && <Alert severity="success">{successMessage}</Alert>}
             </div>
-            <Row className="mt-5 d-flex justify-content-center" style={{minWidth: 400, margin: '0 0 0 10px'}}>
+            <Row className="mt-5 d-flex justify-content-center"  style={{minWidth: 400}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
                 <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
-                    <h1>Create a Product</h1>
+                    <h1>Edit a Product</h1>
                 </div>
-                    <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     {/* <Form.Row> */}
                         {/* <Form.Group
                             className="product__form__group"
@@ -136,7 +143,7 @@ function CreateProduct() {
                                 variant="primary"
                                 type="submit"
                             >
-                            Create New Product
+                            Edit Product
                             </Button>
                         </Form.Group>
                     {/* </Form.Row> */}
@@ -147,4 +154,4 @@ function CreateProduct() {
     )
 }
 
-export default CreateProduct;
+export default EditProduct;

@@ -45,7 +45,7 @@ const deleteProduct = async (id, user_id) => {
       "Bearer " + localStorage.getItem("user");
     const res = await axios.delete(`http://localhost:5000/products/${id}`, user_id);
     return res.data;
-  };
+};
 
 export {
     addProduct,

@@ -15,7 +15,7 @@ function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
-function Home() {
+const Home = () => {
     const history = useHistory();
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
