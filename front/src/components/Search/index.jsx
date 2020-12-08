@@ -142,7 +142,6 @@ const Search = ({ filterChanged }) => {
                     <div className="pagination-container">
                     <ListGroup horizontal className="List__groups">
                         <Link
-                        // to={`?page=${prevPage}`}
                         to={`?title=${querySearch}&page=${prevPage}`}
                         className={`clicked ${prevPageValue}`}
                         >
@@ -166,7 +165,6 @@ const Search = ({ filterChanged }) => {
                         </Link>
 
                         <Link
-                        // to={`?page=${nextPage}`}
                         to={`?title=${querySearch}&page=${nextPage}`}
                         className={`clicked ${nextPageValue}`}
                         >

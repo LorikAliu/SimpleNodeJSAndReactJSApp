@@ -289,7 +289,6 @@ router.put('/:id', verifyToken, async (req, res) => {
                     res.status(200).json({successMsg: 'Product has been updated successfuly!'});
                 });
             } catch (e) {
-                // res.sendStatus(500)
                 res.status(500).json({errorMsg: 'Product not found!'});
             }
         }
@@ -308,7 +307,6 @@ router.delete("/:id", verifyToken, async (req, res) => {
                     res.status(200).json({successMsg: `Product has been deleted!`});
                 });
             } catch (e) {
-                // res.sendStatus(500)
                 res.status(500).json({errorMsg: 'Product not found!'});
             }
         }
