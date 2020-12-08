@@ -18,7 +18,9 @@ router.get('/:id', async (req, res) => {
     try {
         await Product.findById(req.params.id, (err, product) => {
             if (err) return err;
-            return res.status(200).json(product);
+            // return res.status(200).json(product);
+            return res.status(200).json({product});
+            // return res.status(200).json({product, successMsg: 'Product has been added successfuly!'});
         });
     } catch (e) {
         // res.sendStatus(500)

@@ -30,8 +30,8 @@ function CreateProduct() {
         try {
           const response = await addProduct(product);
           e.target.reset();
-          setErrMessage(response.errMessage);
-          setSuccessMessage(response.successMessage);
+          response.errMessage ? setErrMessage(response.errMessage) : setErrMessage(false);
+          response.successMsg ? setSuccessMessage(response.successMsg) : setSuccessMessage(false);
         } catch (e) {}
       };
 

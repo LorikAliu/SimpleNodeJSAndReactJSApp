@@ -18,12 +18,27 @@ const EditProduct = () => {
     const { user: currentUser, isLoggedIn } = useSelector((state) => state.auth);
     const [errMessage, setErrMessage] = useState(false);
     const [successMessage, setSuccessMessage] = useState(false);
-    const [productDetails, setProductDetails] = useState([]);
+    // const [productDetails, setProductDetails] = useState([]);
+    const [productDetails, setProductDetails] = useState({});
 
     const getProductsList = async () => {
-        const response = await getSingleProduct( );
-        setProductDetails(response.products);
+        try {
+            const response = await getSingleProduct(id);
+            setProductDetails((oldDetails) => ({
+                ...oldDetails,
+                productTitle: response.product.productTitle,
+                productPrice: response.product.productPrice,
+                productStock: response.product.productStock
+            }));
+        } catch (e) {
+            setErrMessage('Product not found!')
+        }
     };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setProductDetails({ ...productDetails, [name]: value });
+      };
 
     const { register, handleSubmit, errors } = useForm();
 
@@ -35,10 +50,8 @@ const EditProduct = () => {
         };
     
         try {
-          const response = await editProduct( id, product);
-          e.target.reset();
-          setErrMessage(response.errMessage);
-          setSuccessMessage(response.successMessage);
+            const response = await editProduct( id, product);
+            response.successMsg ? setSuccessMessage(response.successMsg) : setSuccessMessage(false);
         } catch (e) {}
     };
 
@@ -53,29 +66,33 @@ const EditProduct = () => {
     return (
         <>
             <Header />
-            <div className="product__container">
-                {errMessage && <Alert severity="error">{errMessage}</Alert>}
-                {successMessage && <Alert severity="success">{successMessage}</Alert>}
-            </div>
             <Row className="mt-5 d-flex justify-content-center"  style={{minWidth: 400}}>
                 <Col className="mt-4"  style={{maxWidth: 900}}>
+                {errMessage ? (
+                    <>
+                        <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
+                            <Alert severity="error">{errMessage}</Alert>
+                        </div>
+                    </>
+                ) : '' }
+                {successMessage ? (
+                    <>
+                        <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
+                        <Alert severity="success">{successMessage}</Alert>
+                        </div>
+                    </>
+                ) : '' }
                 <div className="form__title d-flex justify-content-center mb-5 mt-5 ">
                     <h1>Edit a Product</h1>
                 </div>
                 <Form onSubmit={handleSubmit(onSubmit)}>
-                    {/* <Form.Row> */}
-                        {/* <Form.Group
-                            className="product__form__group"
-                            as={Col} md={12}
-                        > */}
-                        {/* <Form.Group className="product__form__group" as={Col} auto> */}
                         <Form.Group className="product__form__group" as={Col} auto>
                             <Form.Label className="product__form__label d-flex align-items-end">
                             Product Name:
                             </Form.Label>
                             <Form.Control
                             type="text"
-                            placeholder="Name..."
+                            defaultValue={productDetails.productTitle}
                             name="productTitle"
                             // value={paymentDetails.name}
                             ref={register({ required: true, minLength: 3 })}
@@ -99,8 +116,10 @@ const EditProduct = () => {
                         </Form.Label>
                         <Form.Control
                             type="number"
-                            placeholder="Product Price..."
+                            value={productDetails.productPrice}
+                            // defaultValue={productDetails.productPrice}
                             name="productPrice"
+                            onChange={handleChange}
                             // value={paymentDetails.cardNo}
                             ref={register({ required: true, min: 1 })}
                         />
@@ -123,8 +142,10 @@ const EditProduct = () => {
                             </Form.Label>
                             <Form.Control
                             type="number"
-                            placeholder="Product Price..."
+                            value={productDetails.productStock}
+                            // defaultValue={productDetails.productStock}
                             name="productStock"
+                            onChange={handleChange}
                             ref={register({ required: true, min: 1 })}
                             />
                             <p style={{ color: "red" }}>
