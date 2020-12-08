@@ -18,9 +18,7 @@ router.get('/:id', async (req, res) => {
     try {
         await Product.findById(req.params.id, (err, product) => {
             if (err) return err;
-            // return res.status(200).json(product);
             return res.status(200).json({product});
-            // return res.status(200).json({product, successMsg: 'Product has been added successfuly!'});
         });
     } catch (e) {
         // res.sendStatus(500)
@@ -32,7 +30,6 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     try {
         const productData = {
-            // eventPhoto: uploadName,
             productTitle: req.body.productTitle,
             productPrice: req.body.productPrice,
             productStock: req.body.productStock
@@ -50,7 +47,6 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const productData = {};
-        // if (req.body.eventPhoto) productData.eventPhoto = req.body.eventPhoto;
         if (req.body.productTitle) productData.productTitle = req.body.productTitle;
         if (req.body.productPrice) productData.productPrice = req.body.productPrice;
         if (req.body.productStock) productData.productStock = req.body.productStock;

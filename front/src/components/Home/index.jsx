@@ -84,7 +84,8 @@ const Home = () => {
                     .map((product) => (
                             <tr>
                                 <td>{product.productTitle}</td>
-                                <td>{product.productPrice / 100} $</td>
+                                {/* <td>{product.productPrice / 100} $</td> */}
+                                <td>{product.productPrice.toFixed(2)} $</td>
                                 <td>{product.productStock}</td>
                                 <td>{product.productDate}</td>
                                 <td><Button variant="secondary" onClick={() => {
